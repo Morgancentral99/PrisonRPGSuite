@@ -19,6 +19,7 @@ public class OnJoinLeave implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		if(!event.getPlayer().hasPlayedBefore()) {
+			
 			event.setJoinMessage(m.Format("&6" + event.getPlayer().getDisplayName() + "&8Joined as Inmate Number: &6" + ps.getPlayerNumber()));
 		}
 		event.setJoinMessage(m.Format(""));
