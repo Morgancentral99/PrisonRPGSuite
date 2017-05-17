@@ -8,11 +8,14 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.morgancentral99.main.commands.ScheduleBroadcast;
+import me.morgancentral99.main.listeners.Scheduler;
 import me.morgancentral99.main.prison.Players;
+import me.morgancentral99.main.prison.Schedule;
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
@@ -25,6 +28,7 @@ public class Main extends JavaPlugin {
 	File file;
 	File playerData;
 	Players ps;
+	Schedule sche;
 
 	
 	@Override
@@ -34,6 +38,7 @@ public class Main extends JavaPlugin {
 	registerListeners();
 	createConfig();
 	ps.onEnable();
+	sche.onEnable();
 	}
 	
 	@Override
@@ -48,6 +53,10 @@ public class Main extends JavaPlugin {
 	
 	private void registerListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
+		
+		Scheduler scheduler = new Scheduler();
+		
+		Bukkit.getServer().getPluginManager().callEvent(scheduler);
 	}
 	
 	public String Format(String message) {
@@ -55,17 +64,15 @@ public class Main extends JavaPlugin {
 	}
 	
 	private void createConfig() {
-		playerData = new File("plugins/YourPlugin/Custom Currency/" + u + ".yml");
-        PlayerDataConfig = YamlConfiguration.loadConfiguration(playerData);
-		if(!(file.exists())) {
-			
-		}
+		if(!file.exists()) {
 		file.mkdirs();
+	}
 		config.addDefault("PlayerNumber", 0);
+		config.addDefault("Day", 0);
 		config.options().copyDefaults(true);
 		saveConfig();
-
 	}
+
 	//Starts Player Files
 	
 	public void createConfig2() {
