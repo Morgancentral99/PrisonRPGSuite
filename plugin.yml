@@ -1,0 +1,9 @@
+name: PrisonRPGSuite
+author: Morgancentral99
+version: 0.0.1
+main: me.morgancentral99.main.Main
+ commands:
+   Timer:
+     description: Timer
+     permission: Prison.Timer
+     usage: <command>
