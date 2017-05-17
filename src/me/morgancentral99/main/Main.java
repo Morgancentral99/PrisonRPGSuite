@@ -13,11 +13,13 @@ public class Main extends JavaPlugin {
 	
 	Logger log = Bukkit.getLogger();
 	String logPlugin = "[Prison RPG Suite]";
-	public HashMap<String,> commands = new HashMap<>();
+
 	
 	@Override
 	public void onEnable() {
 	log.info(logPlugin + " Plugin Loaded");
+	registerCommands();
+	registerListeners();
 	}
 	
 	@Override
@@ -26,9 +28,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	private void registerCommands() {
-		commands.put("BroadcastScheduler", ScheduleBroadcast);
-		
-		for()
+		getCommand("schedule").setExecutor(new ScheduleBroadcast());
 		
 	}
 	
